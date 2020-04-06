@@ -14,7 +14,7 @@ removed_stopwords_text = StopWordsRemover.remove(text)
 stemmed_text = Stemmer.stem(removed_stopwords_text)
 # Counts number of words has appeared in the document
 sanitized_text = TextHandler.WordCounter(stemmed_text)
-# print(sanitized_text)
+
 book1 = {
     "ID": '1',
     "Title": "Covid",
@@ -36,7 +36,7 @@ removed_stopwords_text2 = StopWordsRemover.remove(text2)
 stemmed_text2 = Stemmer.stem(removed_stopwords_text2)
 # Counts number of words has appeared in the document
 sanitized_text2 = TextHandler.WordCounter(stemmed_text2)
-# print(sanitized_text)
+
 book2 = {
     "ID": '2',
     "Title": "Artificial neural network",
@@ -60,7 +60,7 @@ removed_stopwords_text3 = StopWordsRemover.remove(text3)
 stemmed_text3 = Stemmer.stem(removed_stopwords_text3)
 # Counts number of words has appeared in the document
 sanitized_text3 = TextHandler.WordCounter(stemmed_text3)
-# print(sanitized_text)
+
 book3 = {
     "ID": '3',
     "Title": "Bioreactor",
