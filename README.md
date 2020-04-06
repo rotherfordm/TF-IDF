@@ -24,7 +24,7 @@ This module is implmented in Python.
 ## Installation
 
 ```
-pip virtualenv
+pip install virtualenv
 ```
 
 Make virtual environment
