@@ -3,7 +3,8 @@ import re
 
 
 class StopWordsRemover(object):
-    def remove(self, text):
+    @staticmethod
+    def remove(text):
         """
         converts the text into a list of text and 
         removes the stopwords in the input_text

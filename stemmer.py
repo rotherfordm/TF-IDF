@@ -5,7 +5,8 @@ snowball_stemmer = SnowballStemmer("english")
 
 
 class Stemmer(object):
-    def stem(self, text):
+    @staticmethod
+    def stem(text):
         textAux = []
         tokenAux = []  # we declare list for storing tokens
         tokens = nltk.word_tokenize(text)
