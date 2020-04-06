@@ -52,8 +52,59 @@ pip install -r requirements.txt
 
 ## Examples
 
-[test.py]()
+Full test: [test.py]()
+
+```
+text2 =  """
+Artificial neural networks (ANN) or connectionist systems are computing systems
+vaguely inspired by the biological neural networks that constitute animal brains.
+Such systems "learn" to perform tasks by considering examples, generally without
+being programmed with task-specific rules. For example, in image recognition,
+they might learn to identify images that contain cats by analyzing example images
+that have been manually labeled as "cat" or "no cat" and using the results to
+identify cats in other images. They do this without any prior knowledge of cats,
+for example, that they have fur, tails, whiskers and cat-like faces. Instead,
+they automatically generate identifying characteristics from the examples that
+they process.
+"""
+
+# Remove Stopwords or unnessary words such as is, a, and
+removed_stopwords_text = StopWordsRemover.remove(text)
+
+# Stem to reduce inflected words to their word stem, base or root form
+stemmed_text = Stemmer.stem(removed_stopwords_text)
+
+# Counts number of words has appeared in the document
+sanitized_text = TextHandler.WordCounter(stemmed_text)
+
+book =  {
+"ID":  '1',
+"Title":  "Artificial neural network",
+"Subtitle":  "neural networks",
+"Author":  "author 1",
+"RawText": text1,
+"SanitizedText": sanitized_text1,
+"RemovedStopWordsText": removed_stopwords_text1,
+"TotalNoOfTerms":  len(text.lower().split("  ")),
+"TFIDF":  0,
+}
+```
+
+```
+tfIDFHandler =  TFIDFHandler()
+books =  {'1': book1}
+tfIDFHandler.query =  "neural"
+tfIDFHandler.calc_total_tfidf_per_book(books)
+print("tfIDFHandler.query",  "neural")
+```
+
+```
+TFIDF calculation:
+1 Artificial neural network TF: 0.018691588785046728  IDF: 1 TFIDF: 0.018691588785046728
+END calculation:
+tfIDFHandler.query neural
+```
 
 ## References
 
--[tfidf](http://www.tfidf.com/)
+[tfidf](http://www.tfidf.com/) - tfidf.com
