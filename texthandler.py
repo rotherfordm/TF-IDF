@@ -1,6 +1,5 @@
 from collections import Counter
 import json
-from textsanitizer import TextSanitizer
 
 
 class TextHandler(object):

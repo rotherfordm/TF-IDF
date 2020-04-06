@@ -1,6 +1,6 @@
 import math
 import re
-from .stemmer import Stemmer
+from stemmer import Stemmer
 
 
 class TFIDFHandler(object):
@@ -13,7 +13,7 @@ class TFIDFHandler(object):
 
     @query.setter
     def query(self, value):
-        self._query = Stemmer().stem(value)  # Automatically Stem the input of the user
+        self._query = Stemmer.stem(value)  # Automatically Stem the input of the user
 
     @query.deleter
     def query(self):
@@ -142,8 +142,6 @@ class TFIDFHandler(object):
         return new_dict_of_books
 
     def sort_by_tf_idf(self, dict_of_books):
-        # print('tracer')
-        # print(dict_of_books.keys())
         # print(sorted(dict_of_books, key=lambda x: (dict_of_books[x]['TFIDF']), reverse=True))
         return sorted(
             dict_of_books, key=lambda x: (dict_of_books[x]["TFIDF"]), reverse=True
