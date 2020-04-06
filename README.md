@@ -10,11 +10,10 @@ This module is implmented in Python.
 
 ## Table of Contents
 
-1.  [Built With]()
-2.  [Installation]()
-3.  [Examples]()
-4.  [Built With]()
-5.  [References]()
+1.  [Built With](https://github.com/HeatzRM/TF-IDF#built-with)
+2.  [Installation](https://github.com/HeatzRM/TF-IDF#installation)
+3.  [Examples](https://github.com/HeatzRM/TF-IDF#examples)
+4.  [References](https://github.com/HeatzRM/TF-IDF#references)
 
 ## Built With
 
@@ -52,7 +51,7 @@ pip install -r requirements.txt
 
 ## Examples
 
-Full test: [test.py]()
+Full test: [test.py](https://github.com/HeatzRM/TF-IDF/blob/master/test.py)
 
 ```
 text2 =  """
