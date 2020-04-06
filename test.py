@@ -2,7 +2,7 @@ from stopwordsremover import StopWordsRemover
 from texthandler import TextHandler
 from stemmer import Stemmer
 from tfidf import TFIDFHandler
-
+from searchhandler import SearchHandler
 
 # Text to be converted
 text = """
@@ -16,8 +16,10 @@ stemmed_text = Stemmer.stem(removed_stopwords_text)
 sanitized_text = TextHandler.WordCounter(stemmed_text)
 # print(sanitized_text)
 book1 = {
-    "ID": 1,
+    "ID": '1',
     "Title": "Covid",
+    "Subtitle": "viruses",
+    "Author": "author 1",
     "RawText": text,
     "SanitizedText": sanitized_text,
     "RemovedStopWordsText": removed_stopwords_text,
@@ -36,8 +38,10 @@ stemmed_text2 = Stemmer.stem(removed_stopwords_text2)
 sanitized_text2 = TextHandler.WordCounter(stemmed_text2)
 # print(sanitized_text)
 book2 = {
-    "ID": 2,
+    "ID": '2',
     "Title": "Artificial neural network",
+    "Subtitle": "neural networks",
+    "Author": "author 2",
     "RawText": text2,
     "SanitizedText": sanitized_text2,
     "RemovedStopWordsText": removed_stopwords_text2,
@@ -58,8 +62,10 @@ stemmed_text3 = Stemmer.stem(removed_stopwords_text3)
 sanitized_text3 = TextHandler.WordCounter(stemmed_text3)
 # print(sanitized_text)
 book3 = {
-    "ID": 3,
+    "ID": '3',
     "Title": "Bioreactor",
+    "Subtitle": "reactor",
+    "Author": "author 3",
     "RawText": text3,
     "SanitizedText": sanitized_text3,
     "RemovedStopWordsText": removed_stopwords_text3,
@@ -69,15 +75,54 @@ book3 = {
 
 
 tfIDFHandler = TFIDFHandler()
+books = {'1': book1, '2': book2, '3': book3}
 
 tfIDFHandler.query = "coronavirus"
-tfIDFHandler.calc_total_tfidf_per_book({1: book1, 2: book2, 3: book3})
+tfIDFHandler.calc_total_tfidf_per_book(books)
 print("tfIDFHandler.query", "coronavirus")
 
 tfIDFHandler.query = "neural"
-tfIDFHandler.calc_total_tfidf_per_book({1: book1, 2: book2, 3: book3})
+tfIDFHandler.calc_total_tfidf_per_book(books)
 print("tfIDFHandler.query", "neural")
 
 tfIDFHandler.query = "bioreactor"
-tfIDFHandler.calc_total_tfidf_per_book({1: book1, 2: book2, 3: book3})
+tfIDFHandler.calc_total_tfidf_per_book(books)
 print("tfIDFHandler.query", "bioreactor")
+
+query = "neural networks".lower()
+list_of_books = []
+list_of_books = SearchHandler().search_books(query, books, ['Title', "Subtitle", "Author"])
+
+#phrase search Search based on content of the books
+tfIDFHandler.query = query
+books = tfIDFHandler.calc_tfidf_per_book(books)
+books = tfIDFHandler.sort_by_tf_idf(books)
+
+books = set(books)
+list_of_books = set(list_of_books)
+list_of_books = set.union(list_of_books, books)
+
+#redo search Search books only if any of the query of the words exist
+if(len(list_of_books) == 0):
+    print("\n\nStarting Split Query Search")
+    query = query.split(' ')
+
+    final_split_search_books = {}
+    for q in query:
+        print('\nSearching for ' + q)
+        split_search_books = books 
+        TFIDF = TFIDFHandler()
+        TFIDF.query = q
+        split_search_books = TFIDF.calc_total_tfidf_per_book(split_search_books)
+
+        for book in final_split_search_books:
+            print(final_split_search_books[book]['TFIDF'])
+
+        for book in split_search_books:
+            final_split_search_books.update({split_search_books[book]['ID']  : split_search_books[book]})
+
+    final_split_search_books = TFIDF.sort_by_tf_idf(final_split_search_books)
+
+    print("Split Search end\n\n")
+    print('final_split_search_books')
+    print(final_split_search_books)
