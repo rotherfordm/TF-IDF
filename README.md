@@ -91,7 +91,7 @@ book =  {
 
 ```
 tfIDFHandler =  TFIDFHandler()
-books =  {'1': book1}
+books =  {'1': book}
 tfIDFHandler.query =  "neural"
 tfIDFHandler.calc_total_tfidf_per_book(books)
 print("tfIDFHandler.query",  "neural")
