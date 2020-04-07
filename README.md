@@ -60,7 +60,7 @@ from stemmer import Stemmer
 from tfidf import TFIDFHandler
 from searchhandler import SearchHandler
 
-text2 =  """
+text =  """
 Artificial neural networks (ANN) or connectionist systems are computing systems
 vaguely inspired by the biological neural networks that constitute animal brains.
 Such systems "learn" to perform tasks by considering examples, generally without
@@ -87,9 +87,9 @@ book =  {
 "Title":  "Artificial neural network",
 "Subtitle":  "neural networks",
 "Author":  "author 1",
-"RawText": text1,
-"SanitizedText": sanitized_text1,
-"RemovedStopWordsText": removed_stopwords_text1,
+"RawText": text,
+"SanitizedText": sanitized_text,
+"RemovedStopWordsText": removed_stopwords_text,
 "TotalNoOfTerms":  len(text.lower().split("  ")),
 "TFIDF":  0,
 }
