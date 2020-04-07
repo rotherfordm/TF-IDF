@@ -54,6 +54,12 @@ pip install -r requirements.txt
 Full test: [test.py](https://github.com/HeatzRM/TF-IDF/blob/master/test.py)
 
 ```
+from stopwordsremover import StopWordsRemover
+from texthandler import TextHandler
+from stemmer import Stemmer
+from tfidf import TFIDFHandler
+from searchhandler import SearchHandler
+
 text2 =  """
 Artificial neural networks (ANN) or connectionist systems are computing systems
 vaguely inspired by the biological neural networks that constitute animal brains.
